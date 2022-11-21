@@ -1,0 +1,36 @@
+.container {
+  cursor: pointer;
+}
+
+.card {
+  position: relative;
+  transition: transform .8s, box-shadow .3s, border-color .3s;
+  transform-style: preserve-3d;
+}
+
+.side {
+  backface-visibility: hidden;
+}
+
+.back {
+  transform: rotateY(180deg);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0
+}
+
+.container:hover .card {
+  .back::after {
+    opacity: .5;
+  }
+}
+
+.flipped {
+  transform: rotateY(180deg);
+}
+
+.disabled {
+  pointer-events: none;
+}
