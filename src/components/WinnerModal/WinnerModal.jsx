@@ -16,7 +16,7 @@ const findDifficulty = (num) => {
 
 const WinnerModal = ({setWinnerModalVisible, tries, cardNumber}) => {
     const [name, setName] = useState('');
-    const [difficulty, setDifficulty] = useState(findDifficulty(cardNumber))
+    const [difficulty] = useState(findDifficulty(cardNumber))
 
     return (
         <div className={'bg-sky-300 h-1/2 w-screen lg:h-1/3 lg:w-1/3 absolute top-1/4 left-1/2 -translate-x-1/2'}>

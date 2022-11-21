@@ -22,27 +22,36 @@ const shuffle = (arr) => {
 }
 
 const Game = ({cardNumber}) => {
-        const [pokemons, setPokemons] = useState(createField(cardNumber));
+        const [pokemons, setPokemons] = useState(localStorage.getItem('game') ? JSON.parse(JSON.parse(localStorage.getItem('game')).field) : createField(cardNumber));
         const [firstItem, setFirstItem] = useState(null);
         const [secondItem, setSecondItem] = useState(null);
-        const [pairCounter, setPairCounter] = useState(0);
-        const [tries, setTries] = useState(0);
-        const [winnerModalVisible, setWinnerModalVisible] = useState(false)
+        const [pairCounter, setPairCounter] = useState(localStorage.getItem('game') ? JSON.parse(localStorage.getItem('game')).pairCounter : 0);
+        const [tries, setTries] = useState(localStorage.getItem('game') ? JSON.parse(localStorage.getItem('game')).tries : 0);
+        const [winnerModalVisible, setWinnerModalVisible] = useState(false);
 
         useEffect(() => {
             if (secondItem !== null) {
                 setTimeout(() => {
                     firstItem.image === secondItem.image ? pairFind(firstItem.id, secondItem.id) : pairMissed(firstItem.id, secondItem.id)
-                    setFirstItem(null);
-                    setSecondItem(null);
-                }, 1000)
+                }, 1000);
+                setFirstItem(null);
+                setSecondItem(null);
             }
 
         }, [secondItem]);
 
         useEffect(() => {
             pairCounter === cardNumber && setWinnerModalVisible(true)
-        }, [pairCounter])
+        }, [pairCounter]);
+
+        useEffect(() => {
+            localStorage.setItem('game', JSON.stringify({
+                field: JSON.stringify(pokemons),
+                cardNumber: cardNumber,
+                pairCounter: pairCounter,
+                tries: tries
+            }))
+        }, [pokemons])
 
         const flipCard = (id) => {
             setPokemons(prevState => prevState.map(item => (
@@ -77,8 +86,8 @@ const Game = ({cardNumber}) => {
 
         return (
             <div>
-                <div className="grid items-center justify-items-center "
-                     style={{gridTemplateColumns: `repeat(${cardNumber}, 1fr)`}}>
+                <div className="grid items-center justify-items-center grid-cols-4"
+                >
                     {pairCounter}
                     {tries}
                     {pokemons.map(card =>

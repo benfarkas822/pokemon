@@ -27,7 +27,8 @@ const Home = ({setCardNumber}) => {
                             <option value="7">difficult</option>
                             <option value="9">extreme</option>
                         </select>
-                        <NavLink to={'/game'} className={'btn-primary'}>Start New Game</NavLink>
+                        <NavLink to={'/game'} className={'btn-primary'} onClick={() => localStorage.removeItem('game')}>Start
+                            New Game</NavLink>
                     </div>
                 </div>
 
