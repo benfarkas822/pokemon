@@ -4,7 +4,7 @@
 
 @layer components {
     .btn-primary {
-        @apply py-2 px-4 bg-yellow-400 text-black uppercase font-semibold rounded-lg shadow-md hover:bg-yellow-500 text-2xl;
+        @apply py-2 px-4 bg-yellow-400 text-black uppercase w-fit font-semibold rounded-lg shadow-md hover:bg-yellow-500 text-2xl cursor-pointer;
     }
 
     .select {
