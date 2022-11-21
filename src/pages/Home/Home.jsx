@@ -23,13 +23,9 @@ const Home = ({setCardNumber}) => {
                         }}>
                             <option selected disabled={true} hidden={true}>Deck Size</option>
                             <option value="3">easy</option>
-                            <option value="4">beginner</option>
                             <option value="5">normal</option>
-                            <option value="6">challenging</option>
                             <option value="7">difficult</option>
-                            <option value="8">hard</option>
                             <option value="9">extreme</option>
-                            <option value="10">impossible</option>
                         </select>
                         <NavLink to={'/game'} className={'btn-primary'}>Start New Game</NavLink>
                     </div>

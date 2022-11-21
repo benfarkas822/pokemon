@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import Card from "../../components/Card/Card";
 import {cards} from "../../store/cards";
+import WinnerModal from "../../components/WinnerModal/WinnerModal";
 
 const createField = (size) => {
     const deck = shuffle(cards)
@@ -43,7 +44,7 @@ const Game = ({cardNumber}) => {
             pairCounter === cardNumber && setWinnerModalVisible(true)
         }, [pairCounter])
 
-        const flippCard = (id) => {
+        const flipCard = (id) => {
             setPokemons(prevState => prevState.map(item => (
                     item.id === id ? {...item, isFlipped: !item.isFlipped} : item
                 ))
@@ -63,20 +64,21 @@ const Game = ({cardNumber}) => {
             setTries(prevState => prevState += 1)
         }
         const pairMissed = (firstCardId, secondCardId) => {
-            flippCard(firstCardId);
-            flippCard(secondCardId);
+            flipCard(firstCardId);
+            flipCard(secondCardId);
             setTries(prevState => prevState += 1)
         }
 
         const cardClick = (clickedCard) => {
             firstItem === null ? setFirstItem(clickedCard) : setSecondItem(clickedCard);
-            flippCard(clickedCard.id)
+            flipCard(clickedCard.id)
         }
 
 
         return (
             <div>
-                <div className="grid grid-cols-5">
+                <div className="grid items-center justify-items-center "
+                     style={{gridTemplateColumns: `repeat(${cardNumber}, 1fr)`}}>
                     {pairCounter}
                     {tries}
                     {pokemons.map(card =>
@@ -85,6 +87,8 @@ const Game = ({cardNumber}) => {
                         }} key={card.id}/>
                     )}
                 </div>
+                {winnerModalVisible &&
+                    <WinnerModal setWinnerModalVisible={setWinnerModalVisible} tries={tries} cardNumber={cardNumber}/>}
 
 
             </div>
