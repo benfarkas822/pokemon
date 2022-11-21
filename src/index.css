@@ -1,3 +1,26 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+    .btn-primary {
+        @apply py-2 px-4 bg-yellow-400 text-black uppercase font-semibold rounded-lg shadow-md hover:bg-yellow-500 text-2xl;
+    }
+
+    .select {
+        @apply border-sky-200 border-8 bg-sky-200 uppercase rounded-lg text-2xl;
+    }
+}
+* {
+    font-family: Bangers, sans-serif;
+    font-size: 16px;
+}
+
+@font-face {
+    font-family: 'Bangers';
+    src: url('assets/fonts/Bangers-Regular.woff2') format('woff2'),
+    url('assets/fonts/Bangers-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}

@@ -1,25 +1,19 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {useState} from 'react';
+import {Route, Routes} from "react-router-dom";
+import Home from "./pages/Home/Home";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+function Memory() {
+    return null;
 }
+
+const App = () => {
+  const [cardNumber, setCardNumber] = useState(3);
+  return (
+      <Routes>
+        <Route path="/" element={<Home setCardNumber={setCardNumber}/>}/>
+        <Route path="/game" element={<Memory/>}/>
+      </Routes>
+  );
+};
 
 export default App;
