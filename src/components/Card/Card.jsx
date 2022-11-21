@@ -5,9 +5,9 @@ import bg from "./card-back.png";
 
 const Card = ({card, onClick}) => {
     return (
-        <div className={classes['container']} onClick={() => onClick()}>
+        <div className={`${classes.container} ${!card.isFlippable && classes.disabled}`} onClick={() => onClick()}>
             <div
-                className={`${classes.card} ${(card.isFlipped ? classes.flipped : '')} ${(card.isFlippable) ? '' : 'pointer-events-none'}`}>
+                className={`${classes.card} ${(card.isFlipped ? classes.flipped : '')}`}>
                 <img className={classes.side} src={card.image}/>
                 <div className={`${classes.side} ${classes.back}`}>
                     <img src={bg}/>
